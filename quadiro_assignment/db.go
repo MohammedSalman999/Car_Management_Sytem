@@ -11,8 +11,11 @@ var db *sql.DB
 
 func InitDB() {
 	var err error
-	// Replace with your MySQL connection details
-	db, err = sql.Open("mysql", "localhost:Zeeshan1khan$@tcp(127.0.0.1:3306)/quadiro_db")
+	// Retrieve the MYSQL_URL from environment variables
+	dsn := os.Getenv("MYSQL_URL")
+
+	// Open the database connection
+	db, err = sql.Open("mysql", dsn)
 	if err != nil {
 		log.Fatalf("Error opening database: %v\n", err)
 	}
